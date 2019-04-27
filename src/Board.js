@@ -100,32 +100,35 @@ class Board extends Component {
       <Cell key={`${ycoord}-${xcoord}`} flipCellsAroundMe={this.flipCellsAround} coord={`${ycoord}-${xcoord}`} isLit={c} />
     )}</tr>)
 
-    return board
-    
+    return (
+      <table className='Board'>
+        <tbody>{board}</tbody>
+      </table>
+    )
   }
 
 
   /** Render game board or winning message. */
 
   render() {
-      return (
-        <div>
-          {this.state.hasWon ? (
-            <div>
-              <h1>You win</h1>
+    return (
+      <div>
+        {this.state.hasWon ? (
+          <div className='winner'>
+            <span className='neon-orange'>YOU</span>
+            <span className='neon-blue'>WIN!</span>
+          </div>
+        ) : (
+          <div>
+            <div className='Board-title'>
+              <div className='neon-orange'>Lights</div>
+              <div className='neon-blue'>Out</div>
             </div>
-            ) : (
-              <div>
-                <table className="Board">
-                <tbody>
-                {this.makeTable()}
-                </tbody>
-                </table>
-              </div>
-            )}
-        </div>
-      )
-
+            {this.makeTable()}
+          </div>
+        )}
+      </div>
+    );
   }
 }
 
